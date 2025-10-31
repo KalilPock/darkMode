@@ -17,7 +17,6 @@ const temaSalvo = localStorage.getItem('preferenciaTema');
 
 if(temaSalvo === 'escuro' ){
   document.body.classList.add('dark-mode');
-
 }else{
   //nao vai realizar nada
 }
@@ -45,6 +44,11 @@ botaoAlterar.addEventListener("click", alterarTema);
 
 document.addEventListener('DOMContentLoaded', carregarPreferencia);
 
+//JSON = JavaScript Object Notation
 
+//criando um objeto que não é *String*
+const perfil = {nome:"ana", idade:18};
 
+const perfilEmTexto = JSON.stringify(perfil);
 
+localStorage.setItem('dadosUsuario', perfilEmTexto);
