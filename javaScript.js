@@ -11,6 +11,19 @@ const corpoPagina = document.body;
 const botaoAlterar = document.getElementById("dark-mode");
 const iconeContainer = document.getElementById("icone-tema");
 
+function carregarPreferencia(){
+
+const temaSalvo = localStorage.getItem('preferenciaTema');
+
+if(temaSalvo === 'escuro' ){
+  document.body.classList.add('dark-mode');
+
+}else{
+  //nao vai realizar nada
+}
+
+}
+
 function alterarTema(){
   // .toggle adiciona classe se não estiver no <body>
   corpoPagina.classList.toggle("dark-mode");
@@ -18,39 +31,20 @@ function alterarTema(){
     if (corpoPagina.classList.contains("dark-mode")){
       iconeContainer.innerHTML = svgLua; //injetando svg
       botaoAlterar.innerHTML = iconeContainer.outerHTML + "Ativar Modo Escuro";
+      //adicionando Local Storage tema escuro
+      localStorage.setItem('preferenciaTema', 'escuro');
     } else {
       iconeContainer.innerHTML = svgSol; //injetando svg
       botaoAlterar.innerHTML = iconeContainer.outerHTML + "Ativar Modo Claro";
+      //adicionando Local Storage tema claro
+      localStorage.setItem('preferenciaTema', 'claro');
     }
 }
 
 botaoAlterar.addEventListener("click", alterarTema);
 
+document.addEventListener('DOMContentLoaded', carregarPreferencia);
 
-// Variavel Array
-const alunosTurma = ["Luan", "Vitor", "Tiago", "Thierry", "Andrey", "Kalilpock","Greick"]; 
-
-const container = document.getElementById("container-lista");
-
-//criando o elemento <UL> 
-const listaUL = document.createElement("ul");
-
-for (let i = 0; i < alunosTurma.length; i++){
-  
-  //variavel pega o nome do alno na posição atual do LOOP
-  const nomeDoAluno = alunosTurma[i];
-
-  const itemLI = document.createElement('li');
-
-  //define o texto do novo "item"
-  itemLI.textContent = nomeDoAluno;
-
-  listaUL.appendChild(itemLI);
-}
-
-container.appendChild(listaUL);
-
-console.log("Numero de alunos na lista: " + alunosTurma.length);
 
 
 
