@@ -11,6 +11,16 @@ const corpoPagina = document.body;
 const botaoAlterar = document.getElementById("dark-mode");
 const iconeContainer = document.getElementById("icone-tema");
 
+function vereficarPreferencia(){
+  const preferenciaUsuario = localStorage.getItem('preferenciaUsuario')
+
+  if(preferenciaUsuario === 'escuro' ){
+      document.body.classList.toggle("dark-mode");
+  }else{
+    //
+  }
+}
+
 function alterarTema(){
   // .toggle adiciona classe se não estiver no <body>
   corpoPagina.classList.toggle("dark-mode");
@@ -18,13 +28,18 @@ function alterarTema(){
     if (corpoPagina.classList.contains("dark-mode")){
       iconeContainer.innerHTML = svgLua; //injetando svg
       botaoAlterar.innerHTML = iconeContainer.outerHTML + "Ativar Modo Escuro";
+      //armazenando preferencia do usuario
+      localStorage.setItem('preferenciaUsuario', 'escuro');
     } else {
       iconeContainer.innerHTML = svgSol; //injetando svg
       botaoAlterar.innerHTML = iconeContainer.outerHTML + "Ativar Modo Claro";
+      //armazenando preferencia do usuario
+      localStorage.setItem('preferenciaUsuario', 'claro');
     }
 }
 
 botaoAlterar.addEventListener("click", alterarTema);
 
-document.addEventListener('DOMContentLoaded', carregarPreferencia);
+document.addEventListener('DOMContentLoaded', vereficarPreferencia);
+
 
